@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=IBM+Plex+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+.scrollbar-gutter {
+  scrollbar-gutter: stable both-edges;
+}
+
+p {
+	font-family: 'IBM Plex Sans Condensed', sans-serif;
+	font-size: 1.25rem;
+	line-height: 1.75rem; 
+	letter-spacing: 0.06em; 
+	text-transform: uppercase; 
+}
+
+h1 {
+	font-family: 'Cormorant Garamond', serif;
+	font-size: 4.0rem;
+	line-height: 1; 
+	color: #1E40AF; 
+}

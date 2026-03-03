@@ -1,0 +1,16 @@
+import React from "react";
+
+const Haiku = ({ haiku }) => {
+    return(
+        <div className="w-full h-fit p-4 grid grid-rows-6 place-items-center">
+            <h1 className="text-4xl">{haiku.title}</h1>
+            <h1 className="text-lg text-black">By {haiku.name}</h1>
+            <p className="text-lg">{haiku.line1}</p>
+            <p className="text-lg">{haiku.line2}</p>
+            <p className="text-lg">{haiku.line3}</p>
+						<div className="w-[50%] h-px bg-blue-800" />
+        </div>
+    );
+}
+
+export default Haiku;
