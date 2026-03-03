@@ -5,10 +5,11 @@ import { getAuth } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
+console.log(process.env.REACT_APP_FIREBASE_API_KEY);
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: "AIzaSyDh8yg8Kn7i5Lf6PWrBgnZbFt-nYOdmY_M",
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
     authDomain: "haikuatry.firebaseapp.com",
     databaseURL: "https://haikuatry-default-rtdb.firebaseio.com",
     projectId: "haikuatry",

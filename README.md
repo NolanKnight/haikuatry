@@ -1,9 +1,31 @@
-# Building a Real-time Chat App with ReactJs and Firebase. :writing_hand:
+# Create React App
 
-This is the code example for my article on [Building a Real-time Chat App with ReactJs and Firebase](https://www.freecodecamp.org/news/building-a-real-time-chat-app-with-reactjs-and-firebase/) for [FreeCodeCamp](https://freecodecamp.org/). Here is the [live demo](https://react-chat-timonwa.vercel.app/).
+This directory is a brief example of a [Create React App](https://github.com/facebook/create-react-app) site that can be deployed to Vercel with zero configuration.
 
-Visit my blog, [Timonwa's Notes](https://blog.timonwa.com), for awesome technical contents like articles, codesnippets, tech goodies, community projects and more.
+## Deploy Your Own
 
-Please give this repo a ⭐ if it was helpful to you.
+Deploy your own Create React App project with Vercel.
 
-![A screencast demo of the react chat app. I log in in with my Google account, the chat room shows up, then I log out](https://user-images.githubusercontent.com/63044364/211147631-d8b8a732-1572-4801-ba01-99a271b77bc4.gif)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/framework-boilerplates/create-react-app&template=create-react-app)
+
+_Live Example: https://create-react-template.vercel.app/_
+
+## Available Scripts
+
+In the project directory, you can run:
+
+### `npm start`
+
+Runs the app in the development mode. Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+
+The page will reload when you make changes. You may also see any lint errors in the console.
+
+### `npm test`
+
+Launches the test runner in the interactive watch mode. See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+### `npm run build`
+
+Builds the app for production to the `build` folder.
+
+It correctly bundles React in production mode and optimizes the build for the best performance. The build is minified and the filenames include the hashes.
