@@ -12,9 +12,9 @@ const NavBar = ({ layoutRef }) => {
 
   const googleSignIn = () => {
     const provider = new GoogleAuthProvider();
-		signInWithPopup(auth, provider).catch((error) => {
-			alert("Error during sign-in:", error);
-		});
+    signInWithPopup(auth, provider).catch((error) => {
+      alert("Error during sign-in:", error);
+    });
   };
 
   const signOut = () => {
