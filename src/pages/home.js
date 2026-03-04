@@ -4,7 +4,7 @@ const Home = () => {
   return (
     <div className="text-center w-full h-full">
       <h1>Welcome, you people!</h1><br/>
-			<p>
+			<p className="text">
         This site is Haikuatry;<br/>
         Home of Haiku<br/><br/>
 

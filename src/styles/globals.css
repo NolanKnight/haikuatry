@@ -8,12 +8,11 @@
   scrollbar-gutter: stable both-edges;
 }
 
-p {
+.text {
 	font-family: 'IBM Plex Sans Condensed', sans-serif;
 	font-size: 1.25rem;
 	line-height: 1.75rem; 
-	letter-spacing: 0.06em; 
-	text-transform: uppercase; 
+	letter-spacing: 0.05em;
 }
 
 h1 {
@@ -21,4 +20,8 @@ h1 {
 	font-size: 4.0rem;
 	line-height: 1; 
 	color: #1E40AF; 
+}
+
+input {
+	field-sizing: content;
 }

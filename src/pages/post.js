@@ -35,44 +35,20 @@ const Post = () => {
 
   return (
     <div className="grid place-items-center">
-      <h1 className="">Post a Haiku</h1>
+      <h1>Post a Haiku</h1>
 
-      <div className="mt-4">
-        <form onSubmit={(event) => sendMessage(event)} className="grid grid-rows-4 h-[50vh] place-items-center">
-            <input
+        <form onSubmit={(event) => sendMessage(event)} className="w-full grid grid-rows-4 h-[50vh] place-items-center">
+            {[{key: 0, placeholder: "Title", value: title, setField: setTitle}, {key: 1, placeholder: "Line 1", value:line1, setField: setLine1}, {key: 2, placeholder: "Line 2", value:line2, setField: setLine2}, {key: 3, placeholder: "Line 3", value:line3, setField: setLine3}].map((field) => (<input
                 type="text"
-                placeholder="Title"
-                value={title}
-                className="text-lg h-6 w-auto text-center"
-                onChange={(e) => setTitle(e.target.value)}
-            />
+								key={field.key}
+                placeholder={field.placeholder}
+                value={field.value}
+                className="text h-6 p-4 min-w-[20vw] text-center bg-transparent border-b-2 border-blue-800 focus:outline-none focus:border-blue-500 transition-colors duration-300 ease-in-out"
+                onChange={(e) => field.setField(e.target.value)}
+            />))}
 
-            <input
-                type="text"
-                placeholder="Line 1"
-                value={line1}
-                className="text-lg h-6 w-auto text-center"
-                onChange={(e) => setLine1(e.target.value)}
-            />
-
-            <input
-                type="text"
-                placeholder="Line 2"
-                value={line2}
-                className="text-lg h-6 w-auto text-center"
-                onChange={(e) => setLine2(e.target.value)}
-            />
-
-            <input
-                type="text"
-                placeholder="Line 3"
-                value={line3}
-                className="text-lg h-6 w-auto text-center"
-                onChange={(e) => setLine3(e.target.value)}
-            />
-            <button type="submit" className="mt-4 w-64 h-12 bg-blue-800 text-green-400 rounded-xl">Submit</button>
+            <button type="submit" className="mt-4 w-64 h-12 text-blue-800 hover:text-blue-500 text-xl font-montserrat transition-colors duration-300 ease-in-out border-blue-800 hover:border-blue-500 border-4"><b>SUBMIT</b></button>
         </form>
-        </div>
     </div>
   );
 }

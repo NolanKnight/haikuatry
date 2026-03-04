@@ -5,10 +5,10 @@ const Haiku = ({ haiku }) => {
         <div className="w-full h-fit p-4 grid grid-rows-6 place-items-center">
             <h1 className="text-4xl">{haiku.title}</h1>
             <h1 className="text-lg text-black">By {haiku.name}</h1>
-            <p className="text-lg">{haiku.line1}</p>
-            <p className="text-lg">{haiku.line2}</p>
-            <p className="text-lg">{haiku.line3}</p>
-						<div className="w-[50%] h-px bg-blue-800" />
+            <p className="text">{haiku.line1}</p>
+            <p className="text">{haiku.line2}</p>
+            <p className="text">{haiku.line3}</p>
+						<div className="w-[50%] h-[2px] bg-blue-800" />
         </div>
     );
 }
