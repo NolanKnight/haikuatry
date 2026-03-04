@@ -16,7 +16,7 @@ const Feed = () => {
     const q = query(
       collection(db, "haiku"),
       orderBy("createdAt", "desc"),
-      limit(50)
+      limit(50),
     );
 
     const unsubscribe = onSnapshot(q, (QuerySnapshot) => {
@@ -25,7 +25,7 @@ const Feed = () => {
         fetchedMessages.push({ ...doc.data(), id: doc.id });
       });
       const sortedMessages = fetchedMessages.sort(
-        (a, b) => a.createdAt - b.createdAt
+        (a, b) => a.createdAt - b.createdAt,
       );
       setMessages(sortedMessages);
     });
@@ -39,6 +39,6 @@ const Feed = () => {
       ))}
     </div>
   );
-}
+};
 
 export default Feed;

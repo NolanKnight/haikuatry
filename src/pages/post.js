@@ -3,14 +3,19 @@ import { auth, db } from "../firebase";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 
 const Post = () => {
-    const [title, setTitle] = useState("");
-    const [line1, setLine1] = useState("");
-    const [line2, setLine2] = useState("");
-    const [line3, setLine3] = useState("");
+  const [title, setTitle] = useState("");
+  const [line1, setLine1] = useState("");
+  const [line2, setLine2] = useState("");
+  const [line3, setLine3] = useState("");
 
   const sendMessage = async (event) => {
     event.preventDefault();
-    if (title.trim() === "" || line1.trim() === "" || line2.trim() === "" || line3.trim() === "") {
+    if (
+      title.trim() === "" ||
+      line1.trim() === "" ||
+      line2.trim() === "" ||
+      line3.trim() === ""
+    ) {
       alert("Enter valid message");
       return;
     }
@@ -37,20 +42,35 @@ const Post = () => {
     <div className="grid place-items-center">
       <h1>Post a Haiku</h1>
 
-        <form onSubmit={(event) => sendMessage(event)} className="w-full grid grid-rows-4 h-[50vh] place-items-center">
-            {[{key: 0, placeholder: "Title", value: title, setField: setTitle}, {key: 1, placeholder: "Line 1", value:line1, setField: setLine1}, {key: 2, placeholder: "Line 2", value:line2, setField: setLine2}, {key: 3, placeholder: "Line 3", value:line3, setField: setLine3}].map((field) => (<input
-                type="text"
-								key={field.key}
-                placeholder={field.placeholder}
-                value={field.value}
-                className="text h-6 p-4 min-w-[20vw] text-center bg-transparent border-b-2 border-blue-800 focus:outline-none focus:border-blue-500 transition-colors duration-300 ease-in-out"
-                onChange={(e) => field.setField(e.target.value)}
-            />))}
+      <form
+        onSubmit={(event) => sendMessage(event)}
+        className="w-full grid grid-rows-4 h-[50vh] place-items-center"
+      >
+        {[
+          { key: 0, placeholder: "Title", value: title, setField: setTitle },
+          { key: 1, placeholder: "Line 1", value: line1, setField: setLine1 },
+          { key: 2, placeholder: "Line 2", value: line2, setField: setLine2 },
+          { key: 3, placeholder: "Line 3", value: line3, setField: setLine3 },
+        ].map((field) => (
+          <input
+            type="text"
+            key={field.key}
+            placeholder={field.placeholder}
+            value={field.value}
+            className="text h-6 p-4 min-w-[20vw] text-center bg-transparent border-b-2 border-blue-800 focus:outline-none focus:border-blue-500 transition-colors duration-300 ease-in-out"
+            onChange={(e) => field.setField(e.target.value)}
+          />
+        ))}
 
-            <button type="submit" className="mt-4 w-64 h-12 text-blue-800 hover:text-blue-500 text-xl font-montserrat transition-colors duration-300 ease-in-out border-blue-800 hover:border-blue-500 border-4"><b>SUBMIT</b></button>
-        </form>
+        <button
+          type="submit"
+          className="mt-4 w-64 h-12 text-blue-800 hover:text-blue-500 text-xl font-montserrat transition-colors duration-300 ease-in-out border-blue-800 hover:border-blue-500 border-4"
+        >
+          <b>SUBMIT</b>
+        </button>
+      </form>
     </div>
   );
-}
+};
 
 export default Post;
