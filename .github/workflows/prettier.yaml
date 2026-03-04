@@ -1,8 +1,7 @@
-name: autofix.ci
+name: Check Formatting
 on:
   pull_request:
-  push:
-permissions: {}
+    branches: [main]
 jobs:
   prettier:
     runs-on: ubuntu-latest
@@ -11,9 +10,4 @@ jobs:
       - uses: actions/setup-node@v4
       - run: |
           yarn
-          yarn prettier . --write
-      - uses: autofix-ci/action@v1
-        with:
-          commit-message: "Apply Prettier format"
-          paths-ignore:
-            - ".github/**"
+          yarn prettier . --check
