@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { auth } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { GoogleAuthProvider, signInWithRedirect } from "firebase/auth";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { NavLink } from "react-router-dom";
 
 const NavBar = ({ layoutRef }) => {
@@ -12,7 +12,9 @@ const NavBar = ({ layoutRef }) => {
 
   const googleSignIn = () => {
     const provider = new GoogleAuthProvider();
-    signInWithRedirect(auth, provider);
+		signInWithPopup(auth, provider).catch((error) => {
+			alert("Error during sign-in:", error);
+		});
   };
 
   const signOut = () => {
