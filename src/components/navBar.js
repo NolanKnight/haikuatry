@@ -32,14 +32,14 @@ const NavBar = ({ layoutRef }) => {
     element.addEventListener("scroll", handleScroll);
 
     return () => element.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [layoutRef]);
 
   return (
     <div className="fixed h-36 w-full grid grid-cols-10 place-items-center font-montserrat">
       <NavLink
         to="/"
         className={({ isActive }) =>
-          `text-3xl text-blue-800 col-span-3 border-b-4 ${isActive ? "border-blue-800" : "border-transparent"}`
+          `text-3xl button col-span-3 border-b-4 ${isActive ? "border-blue-800" : "border-transparent"}`
         }
       >
         <b>HAIKUATRY</b>
@@ -56,7 +56,7 @@ const NavBar = ({ layoutRef }) => {
           <NavLink
             to={link.path}
             className={({ isActive }) =>
-              `text-lg w-24 text-center text-blue-800 border-b-4 ${isActive ? "border-blue-800" : "border-transparent"} transition-transform duration-500 ease-in-out ${
+              `text-lg w-24 text-center button border-b-4 ${isActive ? "border-blue-800" : "border-transparent"} ${
                 isCompact() ? link.isCompact : "translate-x-0 translate-y-0"
               }`
             }
@@ -66,7 +66,7 @@ const NavBar = ({ layoutRef }) => {
         ))}
         <button
           onClick={user ? signOut : googleSignIn}
-          className={`text-lg w-24 text-center text-blue-800 border-b-4 border-transparent transition-transform duration-500 ease-in-out ${
+          className={`text-lg w-24 text-center button border-b-4 border-transparent ${
             isCompact() ? "translate-y-20" : "translate-y-0"
           }`}
         >

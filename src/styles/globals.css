@@ -25,3 +25,18 @@ h1 {
 input {
   field-sizing: content;
 }
+
+.button {
+  color: #1e40af;
+  transition-property:
+    color, background-color, border-color, text-decoration-color, fill, stroke,
+    transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 500ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.button:hover {
+  border-color: #3b82f6;
+  color: #3b82f6;
+}

@@ -87,7 +87,7 @@ const Post = () => {
 
         <button
           type="submit"
-          className="mt-4 w-64 h-12 text-blue-800 hover:text-blue-500 text-xl font-montserrat transition-colors duration-300 ease-in-out border-blue-800 hover:border-blue-500 border-4"
+          className="mt-4 w-64 h-12 text-xl font-montserrat border-4 button"
         >
           <b>SUBMIT</b>
         </button>
