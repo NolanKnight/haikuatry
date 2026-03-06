@@ -56,7 +56,7 @@ const NavBar = ({ layoutRef }) => {
           <NavLink
             to={link.path}
             className={({ isActive }) =>
-              `text-lg w-24 text-center button border-b-4 ${isActive ? "border-blue-800" : "border-transparent"} ${
+              `text-lg px-4 text-center button border-b-4 ${isActive ? "border-blue-800" : "border-transparent"} ${
                 isCompact() ? link.isCompact : "translate-x-0 translate-y-0"
               }`
             }
@@ -66,7 +66,7 @@ const NavBar = ({ layoutRef }) => {
         ))}
         <button
           onClick={user ? signOut : googleSignIn}
-          className={`text-lg w-24 text-center button border-b-4 border-transparent ${
+          className={`text-lg px-4 text-center button border-b-4 border-transparent ${
             isCompact() ? "translate-y-20" : "translate-y-0"
           }`}
         >

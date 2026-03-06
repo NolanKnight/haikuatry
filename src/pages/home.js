@@ -6,7 +6,7 @@ const Home = () => {
       <h1>Welcome, you people!</h1>
       <br />
       <p className="text">
-        This site is Haikuatry;
+        This site is Haikuatry,
         <br />
         Home of Haiku
         <br />
