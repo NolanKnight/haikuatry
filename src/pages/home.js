@@ -8,7 +8,7 @@ const Home = () => {
       <p className="text">
         This site is Haikuatry,
         <br />
-        Home of Haiku
+        The home of Haiku
         <br />
         <br />
         Haiku are poems
