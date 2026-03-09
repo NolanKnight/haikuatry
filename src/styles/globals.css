@@ -21,6 +21,7 @@ h1 {
   font-size: 4rem;
   line-height: 1;
   color: #1e40af;
+  text-align: center;
 }
 
 input {
@@ -37,7 +38,9 @@ input {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.button:hover {
-  border-color: #3b82f6;
-  color: #3b82f6;
+@media (min-width: 640px) {
+  .button:hover {
+    border-color: #3b82f6;
+    color: #3b82f6;
+  }
 }
