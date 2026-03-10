@@ -8,13 +8,6 @@ module.exports = {
         cormorant: ["'Cormorant Garamond'", "serif"],
         montserrat: ["'Montserrat'", "sans-serif"],
       },
-      gridTemplateColumns: {
-        60: "repeat(60, minmax(0, 1fr))",
-      },
-      gridColumn: {
-        "span-18": "span 18 / span 18",
-        "span-24": "span 24 / span 24",
-      },
     },
   },
 };
