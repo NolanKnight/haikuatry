@@ -8,7 +8,14 @@ const NavBar = ({ layoutRef }) => {
   const [user] = useAuthState(auth);
   const [scrollY, setScrollY] = useState(0);
 
-  const isCompact = () => scrollY > 36;
+  const linksContainerWidthToNavWidth = 0.5;
+  const [linksContainerWidth, setLinksContainerWidth] = useState(
+    layoutRef.current
+      ? layoutRef.current.clientWidth * linksContainerWidthToNavWidth
+      : (window.innerWidth - 15) * linksContainerWidthToNavWidth,
+  );
+
+  const isCompact = scrollY > 36;
 
   const googleSignIn = () => {
     const provider = new GoogleAuthProvider();
@@ -32,10 +39,23 @@ const NavBar = ({ layoutRef }) => {
     element.addEventListener("scroll", handleScroll);
 
     return () => element.removeEventListener("scroll", handleScroll);
+  }, [layoutRef, isCompact]);
+
+  useEffect(() => {
+    const element = layoutRef.current;
+    if (!element) return;
+
+    const handleResize = () => {
+      setLinksContainerWidth(
+        element.clientWidth * linksContainerWidthToNavWidth,
+      );
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, [layoutRef]);
 
   return (
-    <div className="fixed h-36 w-full grid grid-cols-10 place-items-center font-montserrat">
+    <div className="sticky whitespace-nowrap top-0 left-0 h-36 w-full grid grid-cols-10 place-items-center font-montserrat">
       <NavLink
         to="/"
         className={({ isActive }) =>
@@ -44,21 +64,33 @@ const NavBar = ({ layoutRef }) => {
       >
         <b>HAIKUATRY</b>
       </NavLink>
-      <div className="col-start-6 col-span-4 w-full h-full grid place-items-center grid-cols-3">
+      <div className="col-start-6 translate-x-0 col-span-5 w-full h-full grid place-items-center grid-cols-3">
         {[
-          { title: "FEED", path: "/feed", isCompact: "translate-x-[26.67vw]" },
+          {
+            title: "FEED",
+            path: "/feed",
+            style: {
+              transform: isCompact
+                ? `translateX(${linksContainerWidth * (2 / 3)}px)`
+                : "translateX(0) translateY(0)",
+            },
+          },
           {
             title: "POST",
             path: "/post",
-            isCompact: "translate-x-[13.33vw] translate-y-10",
+            style: {
+              transform: isCompact
+                ? `translateX(${linksContainerWidth * (1 / 3)}px) translateY(40px)`
+                : "translateX(0) translateY(0)",
+            },
           },
         ].map((link) => (
           <NavLink
             to={link.path}
+            key={link.path}
+            style={link.style}
             className={({ isActive }) =>
-              `text-lg px-4 text-center button border-b-4 ${isActive ? "border-blue-800" : "border-transparent"} ${
-                isCompact() ? link.isCompact : "translate-x-0 translate-y-0"
-              }`
+              `text-lg px-1 text-center button border-b-4 ${isActive ? "border-blue-800" : "border-transparent"} `
             }
           >
             <b>{link.title}</b>
@@ -66,8 +98,8 @@ const NavBar = ({ layoutRef }) => {
         ))}
         <button
           onClick={user ? signOut : googleSignIn}
-          className={`text-lg px-4 text-center button border-b-4 border-transparent ${
-            isCompact() ? "translate-y-20" : "translate-y-0"
+          className={`text-lg px-1 text-center button border-b-4 border-transparent ${
+            isCompact ? "translate-y-[80px]" : "translate-y-0"
           }`}
         >
           <b>{user ? "SIGN OUT" : "SIGN IN"}</b>
