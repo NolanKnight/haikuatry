@@ -49,7 +49,7 @@ const MobileNav = () => {
       {links.map((link) => (
         <NavLink
           to={link.path}
-					key={link.path}
+          key={link.path}
           className={({ isActive }) =>
             `text-lg text-center col-start-5 ${isActive ? "block" : "hidden"}`
           }
