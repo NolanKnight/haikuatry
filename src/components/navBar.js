@@ -7,6 +7,7 @@ import { NavLink } from "react-router-dom";
 const NavBar = ({ layoutRef }) => {
   const [user] = useAuthState(auth);
   const [scrollY, setScrollY] = useState(0);
+	// const [linksContainerWidth, setLinksContainerWidth] = useState(window.innerWidth * 0.4);
 
   const isCompact = () => scrollY > 36;
 
@@ -26,16 +27,36 @@ const NavBar = ({ layoutRef }) => {
     if (!element) return;
 
     const handleScroll = () => {
+			console.log("scroll");
       setScrollY(element.scrollTop);
     };
+
+		console.log("window: ", window.innerWidth);
 
     element.addEventListener("scroll", handleScroll);
 
     return () => element.removeEventListener("scroll", handleScroll);
   }, [layoutRef]);
 
+  // useEffect(() => {
+	// 	console.log("layoutEffect");
+
+	// 	const element = layoutRef.current;
+	// 	if (!element) return;
+
+	// 	const handleResize = () => {
+	// 		console.log("resize");
+	// 		setLinksContainerWidth(element.offsetWidth);
+	// 	};
+
+	// 	element.addEventListener("resize", handleResize);
+
+  //   return () => element.removeEventListener("resize", handleResize);
+  // }, [layoutRef]);
+
+
   return (
-    <div className="fixed h-36 w-full grid grid-cols-10 place-items-center font-montserrat">
+    <div className="sticky top-0 left-0 h-36 w-full grid grid-cols-10 place-items-center font-montserrat">
       <NavLink
         to="/"
         className={({ isActive }) =>
@@ -44,17 +65,19 @@ const NavBar = ({ layoutRef }) => {
       >
         <b>HAIKUATRY</b>
       </NavLink>
-      <div className="col-start-6 col-span-4 w-full h-full grid place-items-center grid-cols-3">
+      <div className="col-start-6 translate-x-0 col-span-4 w-full h-full grid place-items-center grid-cols-3">
         {[
-          { title: "FEED", path: "/feed", isCompact: "translate-x-[26.67vw]" },
+          { title: "FEED", path: "/feed", isCompact: "translate-x-[400%]" },
           {
             title: "POST",
             path: "/post",
-            isCompact: "translate-x-[13.33vw] translate-y-10",
+            isCompact: "translate-x-[200%] translate-y-10",
           },
         ].map((link) => (
           <NavLink
             to={link.path}
+						key={link.path}
+						// style={{ transform: isCompact() ? link.isCompact : "translateX(0) translateY(0)" }}
             className={({ isActive }) =>
               `text-lg px-4 text-center button border-b-4 ${isActive ? "border-blue-800" : "border-transparent"} ${
                 isCompact() ? link.isCompact : "translate-x-0 translate-y-0"

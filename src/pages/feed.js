@@ -35,7 +35,7 @@ const Feed = () => {
   return (
     <div className="w-full h-full">
       {messages?.map((haiku) => (
-        <Haiku haiku={haiku} />
+        <Haiku haiku={haiku} key={haiku.id} />
       ))}
     </div>
   );

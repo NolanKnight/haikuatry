@@ -12,8 +12,8 @@ const Layout = ({ children }) => {
         className="w-full h-screen overflow-y-auto scrollbar-gutter bg-yellow-100 sm:block hidden"
       >
         <NavBar layoutRef={ref} />
-        <div className="w-full grid grid-cols-3 place-items-center">
-          <div id="page" className="w-full mt-36 col-start-2">
+        <div className="w-full grid grid-cols-60 place-items-center">
+          <div id="page" className="w-full col-start-[18] col-end-[44]">
             {children}
           </div>
         </div>
