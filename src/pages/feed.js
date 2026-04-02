@@ -25,7 +25,7 @@ const Feed = () => {
         fetchedMessages.push({ ...doc.data(), id: doc.id });
       });
       const sortedMessages = fetchedMessages.sort(
-        (a, b) => a.createdAt - b.createdAt,
+        (a, b) => b.createdAt - a.createdAt,
       );
       setMessages(sortedMessages);
     });
