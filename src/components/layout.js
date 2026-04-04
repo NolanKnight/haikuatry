@@ -9,7 +9,8 @@ const Layout = ({ children }) => {
     <>
       <div
         ref={ref}
-        className="w-full h-screen overflow-y-auto scrollbar-gutter bg-yellow-100 sm:block hidden"
+				style={{ backgroundImage: `url('https://images.metmuseum.org/CRDImages/as/original/DP141042.jpg')` }}
+				className="w-full h-screen overflow-y-auto scrollbar-gutter sm:block hidden bg-center bg-cover"
       >
         <NavBar layoutRef={ref} />
         <div className="w-full grid grid-cols-3 place-items-center">

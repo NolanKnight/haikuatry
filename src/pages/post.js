@@ -62,7 +62,7 @@ const Post = () => {
   };
 
   return (
-    <div className="grid place-items-center">
+    <div className="grid place-items-center box">
       <h1>Post a Haiku</h1>
 
       <form
