@@ -30,7 +30,7 @@ const MobileNav = () => {
   };
 
   return (
-    <div className="fixed top-0 left-0 h-16 w-full bg-yellow-100 grid-cols-6 place-items-center font-montserrat grid text-blue-800">
+    <div className="fixed top-0 left-0 h-[13vh] w-full bg-yellow-100 bg-opacity-80 border-b-4 border-double border-primary grid-cols-6 place-items-center font-montserrat grid text-blue-800 z-10">
       <NavLink to="/" className={`text-xl col-span-3`}>
         <b>HAIKUATRY</b>
       </NavLink>

@@ -5,6 +5,7 @@ import Background from "./background";
 
 const Layout = ({ children }) => {
   const ref = useRef(null);
+	const mobileRef = useRef(null);
 
   return (
     <>
@@ -20,9 +21,10 @@ const Layout = ({ children }) => {
           </div>
         </div>
       </div>
-      <div className="w-full h-screen overflow-y-auto bg-yellow-100 sm:hidden block">
-        <MobileNav />
-        <div id="page" className="w-full mt-16">
+      <div ref={mobileRef} className="w-full h-[87vh] mt-[13vh] overflow-y-auto sm:hidden block">
+				<Background layoutRef={mobileRef} />
+				<MobileNav />
+        <div id="page" className="w-full">
           {children}
         </div>
       </div>
