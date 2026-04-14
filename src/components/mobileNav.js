@@ -5,7 +5,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
-const MobileNav = ({ showMenu, setShowMenu}) => {
+const MobileNav = ({ showMenu, setShowMenu }) => {
   const [user] = useAuthState(auth);
 
   const links = [
@@ -29,7 +29,9 @@ const MobileNav = ({ showMenu, setShowMenu}) => {
   };
 
   return (
-    <div className={`fixed top-0 left-0 h-[13vh] w-full bg-yellow-100 bg-opacity-80 ${showMenu ? "border-transparent" : "border-primary"} border-b-4 border-double grid-cols-6 place-items-center font-montserrat grid text-primary z-10`}>
+    <div
+      className={`fixed top-0 left-0 h-[13vh] w-full bg-yellow-100 bg-opacity-80 ${showMenu ? "border-transparent" : "border-primary"} border-b-4 border-double grid-cols-6 place-items-center font-montserrat grid text-primary z-10`}
+    >
       <NavLink to="/" className={`text-xl col-span-3`}>
         <b>HAIKUATRY</b>
       </NavLink>
