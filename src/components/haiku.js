@@ -2,7 +2,7 @@ import React from "react";
 
 const Haiku = ({ haiku }) => {
   return (
-    <div className="w-full h-fit p-4 grid grid-rows-5 place-items-center text-center box">
+    <div className="w-full h-fit p-4 grid grid-rows-5 place-items-center text-center box mb-20">
       <h1 className="text-4xl">{haiku.title}</h1>
       <h1 className="text-lg">By {haiku.name}</h1>
       <p className="text">{haiku.line1}</p>
