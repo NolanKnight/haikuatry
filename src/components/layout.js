@@ -1,9 +1,11 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import NavBar from "./navBar";
 import MobileNav from "./mobileNav";
 import Background from "./background";
 
 const Layout = ({ children }) => {
+  const [showMenu, setShowMenu] = useState(false);
+
   const ref = useRef(null);
 	const mobileRef = useRef(null);
 
@@ -21,9 +23,9 @@ const Layout = ({ children }) => {
           </div>
         </div>
       </div>
-      <div ref={mobileRef} className="w-full h-[87vh] mt-[13vh] overflow-y-auto sm:hidden block">
+      <div ref={mobileRef} className={`w-full ${showMenu ? "h-[55vh] mt-[45vh]" : "h-[87vh] mt-[13vh]"} overflow-y-auto sm:hidden block`}>
 				<Background layoutRef={mobileRef} />
-				<MobileNav />
+				<MobileNav showMenu={showMenu} setShowMenu={setShowMenu} />
         <div id="page" className="w-full">
           {children}
         </div>
