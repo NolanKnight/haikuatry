@@ -39,7 +39,7 @@ const MobileNav = ({ showMenu, setShowMenu }) => {
         className={`w-full h-[32vh] absolute top-[13vh] left-0 grid grid-rows-4 place-items-center text-center text-lg bg-inherit border-b-4 border-b-primary border-double  ${showMenu ? "block" : "hidden"}`}
       >
         {links.map((link) => (
-          <a href={link.path}>
+          <a href={link.path} key={link.path}>
             <b>{link.title}</b>
           </a>
         ))}
@@ -50,6 +50,7 @@ const MobileNav = ({ showMenu, setShowMenu }) => {
       {links.map((link) => (
         <NavLink
           to={link.path}
+          key={link.path}
           className={({ isActive }) =>
             `text-lg text-center col-start-5 ${isActive ? "block" : "hidden"}`
           }
