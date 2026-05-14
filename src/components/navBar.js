@@ -83,7 +83,7 @@ const NavBar = ({ layoutRef }) => {
             path: "/post",
             style: {
               transform: isCompact
-                ? `translateX(${linksContainerWidth * (1 / 3)}px) translateY(40px)`
+                ? `translateX(${linksContainerWidth * (1 / 3)}px) translateY(50px)`
                 : "translateX(0) translateY(0)",
             },
           },
@@ -94,7 +94,7 @@ const NavBar = ({ layoutRef }) => {
             style={link.style}
             className={({ isActive }) =>
               `text-lg px-4 text-center button box border-b-4 ${isActive ? "border-primary" : "border-transparent"} ${
-                isCompact() ? link.isCompact : "translate-x-0 translate-y-0"
+                isCompact ? link.isCompact : "translate-x-0 translate-y-0"
               }`
             }
           >
@@ -104,7 +104,7 @@ const NavBar = ({ layoutRef }) => {
         <button
           onClick={user ? signOut : googleSignIn}
           className={`text-lg px-4 text-center button box border-b-4 border-transparent ${
-            isCompact() ? "translate-y-20" : "translate-y-0"
+            isCompact ? "translate-y-[100px]" : "translate-y-0"
           }`}
         >
           <b>{user ? "SIGN OUT" : "SIGN IN"}</b>
