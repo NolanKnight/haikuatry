@@ -50,6 +50,9 @@ const NavBar = ({ layoutRef }) => {
         element.clientWidth * linksContainerWidthToNavWidth,
       );
     };
+
+		handleResize();
+
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, [layoutRef]);
