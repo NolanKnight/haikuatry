@@ -37,31 +37,31 @@ const Background = ({ layoutRef }) => {
       return;
     }
 
-		const scrollDownBgArray = () =>
-			setBgArray((prevArray) => {
-				const newArray = new Array(prevArray.length);
-	
-				newArray[newArray.length - 1] = randBg(prevArray);
-	
-				for (let i = 0; i < newArray.length - 1; i++) {
-					newArray[i] = prevArray[i + 1];
-				}
-	
-				return newArray;
-			});
+    const scrollDownBgArray = () =>
+      setBgArray((prevArray) => {
+        const newArray = new Array(prevArray.length);
 
-			const scrollUpBgArray = () =>
-				setBgArray((prevArray) => {
-					const newArray = new Array(prevArray.length);
-		
-					newArray[0] = randBg(prevArray);
-		
-					for (let i = 1; i < newArray.length; i++) {
-						newArray[i] = prevArray[i - 1];
-					}
-		
-					return newArray;
-				});
+        newArray[newArray.length - 1] = randBg(prevArray);
+
+        for (let i = 0; i < newArray.length - 1; i++) {
+          newArray[i] = prevArray[i + 1];
+        }
+
+        return newArray;
+      });
+
+    const scrollUpBgArray = () =>
+      setBgArray((prevArray) => {
+        const newArray = new Array(prevArray.length);
+
+        newArray[0] = randBg(prevArray);
+
+        for (let i = 1; i < newArray.length; i++) {
+          newArray[i] = prevArray[i - 1];
+        }
+
+        return newArray;
+      });
 
     const handleScroll = (e) => {
       e.preventDefault();
@@ -100,7 +100,7 @@ const Background = ({ layoutRef }) => {
     >
       {bgArray.map((image) => (
         <div
-					key={image}
+          key={image}
           className="w-screen h-screen"
           style={{
             backgroundImage: `url(${image})`,
