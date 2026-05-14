@@ -29,32 +29,6 @@ const Background = ({ layoutRef }) => {
     return newArray;
   });
 
-  const scrollDownBgArray = () =>
-    setBgArray((prevArray) => {
-      const newArray = new Array(prevArray.length);
-
-      newArray[newArray.length - 1] = randBg(prevArray);
-
-      for (let i = 0; i < newArray.length - 1; i++) {
-        newArray[i] = prevArray[i + 1];
-      }
-
-      return newArray;
-    });
-
-  const scrollUpBgArray = () =>
-    setBgArray((prevArray) => {
-      const newArray = new Array(prevArray.length);
-
-      newArray[0] = randBg(prevArray);
-
-      for (let i = 1; i < newArray.length; i++) {
-        newArray[i] = prevArray[i - 1];
-      }
-
-      return newArray;
-    });
-
   useEffect(() => {
     const layout = layoutRef.current;
     const element = ref.current;
@@ -62,6 +36,32 @@ const Background = ({ layoutRef }) => {
     if (!layout || !element) {
       return;
     }
+
+		const scrollDownBgArray = () =>
+			setBgArray((prevArray) => {
+				const newArray = new Array(prevArray.length);
+	
+				newArray[newArray.length - 1] = randBg(prevArray);
+	
+				for (let i = 0; i < newArray.length - 1; i++) {
+					newArray[i] = prevArray[i + 1];
+				}
+	
+				return newArray;
+			});
+
+			const scrollUpBgArray = () =>
+				setBgArray((prevArray) => {
+					const newArray = new Array(prevArray.length);
+		
+					newArray[0] = randBg(prevArray);
+		
+					for (let i = 1; i < newArray.length; i++) {
+						newArray[i] = prevArray[i - 1];
+					}
+		
+					return newArray;
+				});
 
     const handleScroll = (e) => {
       e.preventDefault();
@@ -91,7 +91,7 @@ const Background = ({ layoutRef }) => {
     layout.addEventListener("wheel", handleScroll);
 
     return () => layout.removeEventListener("wheel", handleScroll);
-  }, [ref, layoutRef, bgArray, scrollDownBgArray, scrollUpBgArray]);
+  }, [ref, layoutRef, bgArray]);
 
   return (
     <div
@@ -100,6 +100,7 @@ const Background = ({ layoutRef }) => {
     >
       {bgArray.map((image) => (
         <div
+					key={image}
           className="w-screen h-screen"
           style={{
             backgroundImage: `url(${image})`,

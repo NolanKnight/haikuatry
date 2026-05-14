@@ -25,11 +25,11 @@ const Layout = ({ children }) => {
       </div>
       <div
         ref={mobileRef}
-        className={`w-full ${showMenu ? "h-[55vh] mt-[45vh]" : "h-[87vh] mt-[13vh]"} overflow-y-auto sm:hidden block`}
+        className={`w-full grid grid-cols-12 place-items-center ${showMenu ? "h-[55vh] mt-[45vh]" : "h-[87vh] mt-[13vh]"} overflow-y-auto sm:hidden block`}
       >
         <Background layoutRef={mobileRef} />
         <MobileNav showMenu={showMenu} setShowMenu={setShowMenu} />
-        <div id="page" className="w-full">
+        <div id="page" className="w-full mt-4 col-span-10 col-start-2">
           {children}
         </div>
       </div>
