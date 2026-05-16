@@ -2,7 +2,7 @@ import React from "react";
 
 const Home = () => {
   return (
-    <div className="text-center w-full h-full">
+    <div className="text-center w-full h-full box">
       <h1>Welcome, you people!</h1>
       <br />
       <p className="text">

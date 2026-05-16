@@ -62,7 +62,7 @@ const Post = () => {
   };
 
   return (
-    <div className="grid place-items-center">
+    <div className="grid place-items-center box">
       <h1>Post a Haiku</h1>
 
       <form
@@ -80,14 +80,14 @@ const Post = () => {
             key={field.key}
             placeholder={field.placeholder}
             value={field.value}
-            className="text h-6 p-4 min-w-[20vw] text-center bg-transparent border-b-2 border-blue-800 focus:outline-none focus:border-blue-500 transition-colors duration-300 ease-in-out"
+            className="text h-6 p-4 min-w-[20vw] text-center bg-transparent border-b-2 border-primary focus:outline-none focus:border-secondary transition-colors duration-300 ease-in-out"
             onChange={(e) => field.setField(e.target.value)}
           />
         ))}
 
         <button
           type="submit"
-          className="mt-4 w-64 h-12 text-xl font-montserrat border-4 border-blue-800 button"
+          className="mt-4 w-64 h-12 text-xl font-montserrat border-4 border-primary button"
         >
           <b>SUBMIT</b>
         </button>

@@ -1,13 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 import { auth } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
-const MobileNav = () => {
+const MobileNav = ({ showMenu, setShowMenu }) => {
   const [user] = useAuthState(auth);
-  const [showMenu, setShowMenu] = useState(false);
 
   const links = [
     { title: "HOME", path: "/" },
@@ -30,12 +29,14 @@ const MobileNav = () => {
   };
 
   return (
-    <div className="fixed top-0 left-0 h-16 w-full bg-yellow-100 grid-cols-6 place-items-center font-montserrat grid text-blue-800">
+    <div
+      className={`fixed top-0 left-0 h-[13vh] w-full bg-yellow-100 bg-opacity-80 ${showMenu ? "border-transparent" : "border-primary"} border-b-4 border-double grid-cols-6 place-items-center font-montserrat grid text-primary z-10`}
+    >
       <NavLink to="/" className={`text-xl col-span-3`}>
         <b>HAIKUATRY</b>
       </NavLink>
       <div
-        className={`w-full h-40 absolute top-16 left-0 grid grid-rows-4 place-items-center text-center text-lg bg-inherit border-b-4 border-b-blue-800  ${showMenu ? "block" : "hidden"}`}
+        className={`w-full h-[32vh] absolute top-[13vh] left-0 grid grid-rows-4 place-items-center text-center text-lg bg-inherit border-b-4 border-b-primary border-double  ${showMenu ? "block" : "hidden"}`}
       >
         {links.map((link) => (
           <a href={link.path} key={link.path}>

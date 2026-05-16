@@ -62,7 +62,7 @@ const NavBar = ({ layoutRef }) => {
       <NavLink
         to="/"
         className={({ isActive }) =>
-          `text-3xl button col-span-3 border-b-4 ${isActive ? "border-blue-800" : "border-transparent"}`
+          `text-3xl button box col-span-3 border-b-4 ${isActive ? "border-primary" : "border-transparent"}`
         }
       >
         <b>HAIKUATRY</b>
@@ -83,7 +83,7 @@ const NavBar = ({ layoutRef }) => {
             path: "/post",
             style: {
               transform: isCompact
-                ? `translateX(${linksContainerWidth * (1 / 3)}px) translateY(40px)`
+                ? `translateX(${linksContainerWidth * (1 / 3)}px) translateY(50px)`
                 : "translateX(0) translateY(0)",
             },
           },
@@ -93,7 +93,9 @@ const NavBar = ({ layoutRef }) => {
             key={link.path}
             style={link.style}
             className={({ isActive }) =>
-              `text-lg px-1 text-center button border-b-4 ${isActive ? "border-blue-800" : "border-transparent"} `
+              `text-lg px-4 text-center button box border-b-4 ${isActive ? "border-primary" : "border-transparent"} ${
+                isCompact ? link.isCompact : "translate-x-0 translate-y-0"
+              }`
             }
           >
             <b>{link.title}</b>
@@ -101,8 +103,8 @@ const NavBar = ({ layoutRef }) => {
         ))}
         <button
           onClick={user ? signOut : googleSignIn}
-          className={`text-lg px-1 text-center button border-b-4 border-transparent ${
-            isCompact ? "translate-y-[80px]" : "translate-y-0"
+          className={`text-lg px-4 text-center button box border-b-4 border-transparent ${
+            isCompact ? "translate-y-[100px]" : "translate-y-0"
           }`}
         >
           <b>{user ? "SIGN OUT" : "SIGN IN"}</b>
