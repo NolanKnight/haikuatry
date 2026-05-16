@@ -2,113 +2,88 @@ import React, { useEffect, useRef, useState } from "react";
 import bgImages from "../bgImages";
 
 const Background = ({ layoutRef }) => {
-  const ref = useRef(null);
-  const neededScroll = useRef(0);
-  const lastScroll = useRef(0);
+  const getImageHeight = () => window.innerHeight;
 
-  const randBg = (unallowedBgs) => {
-    const allowedBgs = bgImages.filter((bg) => !unallowedBgs.includes(bg));
+  const [, setRenderTick] = useState(0);
+  const virtualScroll = useRef(getImageHeight());
 
-    if (allowedBgs.length === 0) {
-      console.error("No available backgrounds to choose from.");
-      return null;
-    }
+  const randBg = (excluded) => {
+    const allowed = bgImages.filter((bg) => !excluded.includes(bg));
 
-    return allowedBgs[Math.floor(Math.random() * allowedBgs.length)];
+    return allowed[Math.floor(Math.random() * allowed.length)];
   };
 
   const [bgArray, setBgArray] = useState(() => {
-    const newArray = new Array(4);
+    const arr = new Array(4);
 
-    newArray[0] = bgImages[0];
-
-    for (let i = 1; i < newArray.length; i++) {
-      newArray[i] = randBg(newArray.slice(0, i));
+    for (let i = 0; i < arr.length; i++) {
+      arr[i] = randBg([...arr.slice(0, i), bgImages[0]]);
     }
 
-    return newArray;
+    arr[1] = bgImages[0];
+
+    return arr;
   });
 
   useEffect(() => {
     const layout = layoutRef.current;
-    const element = ref.current;
 
-    if (!layout || !element) {
-      return;
-    }
+    if (!layout) return;
 
-    const scrollDownBgArray = () =>
-      setBgArray((prevArray) => {
-        const newArray = new Array(prevArray.length);
-
-        newArray[newArray.length - 1] = randBg(prevArray);
-
-        for (let i = 0; i < newArray.length - 1; i++) {
-          newArray[i] = prevArray[i + 1];
-        }
-
-        return newArray;
-      });
-
-    const scrollUpBgArray = () =>
-      setBgArray((prevArray) => {
-        const newArray = new Array(prevArray.length);
-
-        newArray[0] = randBg(prevArray);
-
-        for (let i = 1; i < newArray.length; i++) {
-          newArray[i] = prevArray[i - 1];
-        }
-
-        return newArray;
-      });
-
-    const handleScroll = (e) => {
+    const handleWheel = (e) => {
       e.preventDefault();
 
       layout.scrollTop += e.deltaY;
-      element.scrollTop += neededScroll.current + e.deltaY * 0.3;
 
-      neededScroll.current = 0;
+      virtualScroll.current += e.deltaY * 0.3;
 
-      if (
-        element.scrollTop >= 0.75 * element.scrollHeight &&
-        lastScroll.current <= 0.75 * element.scrollHeight
-      ) {
-        scrollDownBgArray();
-        neededScroll.current = -element.scrollHeight / bgArray.length;
-      } else if (
-        element.scrollTop <= 0.25 * element.scrollHeight &&
-        lastScroll.current >= 0.25 * element.scrollHeight
-      ) {
-        scrollUpBgArray();
-        neededScroll.current = element.scrollHeight / bgArray.length;
+      const fraction = virtualScroll.current / getImageHeight();
+
+      if (fraction >= 2) {
+        virtualScroll.current -= getImageHeight();
+
+        setBgArray((prev) => {
+          return [...prev.slice(1), randBg(prev)];
+        });
       }
 
-      lastScroll.current = element.scrollTop;
+      if (fraction <= 1) {
+        virtualScroll.current += getImageHeight();
+
+        setBgArray((prev) => {
+          return [randBg(prev), ...prev.slice(0, -1)];
+        });
+      }
+
+      setRenderTick((v) => v + 1);
     };
 
-    layout.addEventListener("wheel", handleScroll);
+    layout.addEventListener("wheel", handleWheel, { passive: false });
 
-    return () => layout.removeEventListener("wheel", handleScroll);
-  }, [ref, layoutRef, bgArray]);
+    return () => {
+      layout.removeEventListener("wheel", handleWheel);
+    };
+  }, [layoutRef]);
 
   return (
-    <div
-      ref={ref}
-      className="absolute top-0 left-0 w-full h-full -z-10 overflow-hidden"
-    >
-      {bgArray.map((image) => (
-        <div
-          key={image}
-          className="w-screen h-screen"
-          style={{
-            backgroundImage: `url(${image})`,
-            backgroundPosition: "center",
-            backgroundSize: "cover",
-          }}
-        />
-      ))}
+    <div className="absolute top-0 left-0 w-full h-full -z-10 overflow-hidden">
+      <div
+        style={{
+          transform: `translateY(-${virtualScroll.current}px)`,
+        }}
+      >
+        {bgArray.map((image, i) => (
+          <div
+            key={`${image}-${i}`}
+            className="w-screen h-screen"
+            style={{
+              backgroundImage: `url(${image})`,
+              backgroundPosition: "center",
+              backgroundSize: "cover",
+            }}
+          />
+        ))}
+      </div>
     </div>
   );
 };
